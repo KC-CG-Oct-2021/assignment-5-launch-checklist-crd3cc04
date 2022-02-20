@@ -85,7 +85,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         cargoReady = true;
     }
     if (fuelReady && cargoReady && fieldCheck) {
-        list.style.visibility = `visible`;
+        //list.style.visibility = `visible`;
         document.getElementById('launchStatus').innerHTML = `Shuttle ready for launch`;
         document.getElementById('launchStatus').style.color = 'rgb(65, 159, 106)';
         /*list.innerHTML = `
