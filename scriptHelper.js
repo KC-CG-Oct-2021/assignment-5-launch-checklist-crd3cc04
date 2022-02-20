@@ -36,17 +36,17 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         fuelReady = false;
     
     if (validateInput(pilot.value) === `Empty` || validateInput(copilot.value) === `Empty` || validateInput(fuelLevel.value) === `Empty` || validateInput(cargoLevel.value) === `Empty`) {
-        alert(`All fields are required`);
+        showAlert(`All fields are required`);
         fieldCheck = false;
-        list.style.visibility = 'visible';
+        list.style.visibility = 'hidden';
     } else if (validateInput(fuelLevel.value) === 'Not a Number' || validateInput(cargoLevel.value) === 'Not a Number'){
-        alert(`Invalid Entry: requires a name in the Pilot and Co-pilot Name fields and a numerical value in Fuel Level and Cargo Mass fields`);
+        showAlert(`Invalid Entry: requires a name in the Pilot and Co-pilot Name fields and a numerical value in Fuel Level and Cargo Mass fields`);
         fieldCheck = false;
-        list.style.visibility = 'visible';
+        list.style.visibility = 'hidden';
     } else if (validateInput(pilot.value) === 'Is a Number' || validateInput(copilot.value) === 'Is a Number') {
-        alert(`Invalid Entry: requires a name in the Pilot and Co-pilot Name fields and a numerical value in Fuel Level and Cargo Mass fields`);
+        showAlert(`Invalid Entry: requires a name in the Pilot and Co-pilot Name fields and a numerical value in Fuel Level and Cargo Mass fields`);
         fieldCheck = false;
-        list.style.visibility = `visible`;
+        list.style.visibility = `hidden`;
     } else {
         fieldCheck = true;
 
@@ -119,3 +119,8 @@ module.exports.validateInput = validateInput;
 module.exports.formSubmission = formSubmission;
 module.exports.pickPlanet = pickPlanet; 
 module.exports.myFetch = myFetch;
+
+function showAlert(message) {
+    try{ window.alert(message);
+} catch(error){};
+}
