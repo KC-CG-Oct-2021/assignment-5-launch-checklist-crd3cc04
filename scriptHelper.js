@@ -38,15 +38,15 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     if (validateInput(pilot.value) === `Empty` || validateInput(copilot.value) === `Empty` || validateInput(fuelLevel.value) === `Empty` || validateInput(cargoLevel.value) === `Empty`) {
         showAlert(`All fields are required`);
         fieldCheck = false;
-        //list.style.visibility = 'hidden';
+
     } else if (validateInput(fuelLevel.value) === 'Not a Number' || validateInput(cargoLevel.value) === 'Not a Number'){
         showAlert(`Invalid Entry: requires a name in the Pilot and Co-pilot Name fields and a numerical value in Fuel Level and Cargo Mass fields`);
         fieldCheck = false;
-        //list.style.visibility = 'hidden';
+        
     } else if (validateInput(pilot.value) === 'Is a Number' || validateInput(copilot.value) === 'Is a Number') {
         showAlert(`Invalid Entry: requires a name in the Pilot and Co-pilot Name fields and a numerical value in Fuel Level and Cargo Mass fields`);
         fieldCheck = false;
-        //list.style.visibility = `hidden`;
+        
     } else {
         fieldCheck = true;
 
@@ -69,6 +69,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         fuelReady = true;
     } 
     if (Number(cargoLevel.value || fuelLevel.value) > 10000 && fieldCheck) {
+        list.style.visibility = `visible`;
         list.innerHTML = `
         <ol>
         <li>Pilot ${pilot.value} is ready for launch</li>
@@ -77,7 +78,6 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         <li>Cargo too heavy for takeoff! Max load is 10,000kg and we have ${cargoLevel.value}kg!</li>
         </ol>
         `;
-        list.style.visibility = `visible`;
         document.getElementById('launchStatus').innerHTML = `Shuttle not ready for launch`;
         document.getElementById('launchStatus').style.color = `rgb(199, 37, 78)`;
         cargoReady = false;
@@ -85,16 +85,16 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         cargoReady = true;
     }
     if (fuelReady && cargoReady && fieldCheck) {
-        list.style.visibility = `hidden`;
+        list.style.visibility = `visible`;
         document.getElementById('launchStatus').innerHTML = `Shuttle ready for launch`;
-        document.getElementById('launchStatus').style.color = `green`;
-        list.innerHTML = `
+        document.getElementById('launchStatus').style.color = 'rgb(65, 159, 106)';
+        /*list.innerHTML = `
         <ol>
         <li>Pilot ${pilot.value} is ready for launch</li>
         <li>Co-pilot ${copilot.value} is ready for launch</li>
         <li>Enough fuel for journey</li>
         <li>Cargo light enough for take off</li>
-        `;
+        `;*/
     }
    
 }
