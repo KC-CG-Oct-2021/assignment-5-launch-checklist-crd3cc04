@@ -38,21 +38,22 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     if (validateInput(pilot.value) === `Empty` || validateInput(copilot.value) === `Empty` || validateInput(fuelLevel.value) === `Empty` || validateInput(cargoLevel.value) === `Empty`) {
         showAlert(`All fields are required`);
         fieldCheck = false;
-        list.style.visibility = 'hidden';
+        //list.style.visibility = 'hidden';
     } else if (validateInput(fuelLevel.value) === 'Not a Number' || validateInput(cargoLevel.value) === 'Not a Number'){
         showAlert(`Invalid Entry: requires a name in the Pilot and Co-pilot Name fields and a numerical value in Fuel Level and Cargo Mass fields`);
         fieldCheck = false;
-        list.style.visibility = 'hidden';
+        //list.style.visibility = 'hidden';
     } else if (validateInput(pilot.value) === 'Is a Number' || validateInput(copilot.value) === 'Is a Number') {
         showAlert(`Invalid Entry: requires a name in the Pilot and Co-pilot Name fields and a numerical value in Fuel Level and Cargo Mass fields`);
         fieldCheck = false;
-        list.style.visibility = `hidden`;
+        //list.style.visibility = `hidden`;
     } else {
         fieldCheck = true;
 
     }
     
     if (Number(fuelLevel.value) < 10000 && fieldCheck) {
+        list.style.visibility = `visible`;
         list.innerHTML = `
         <ol>
         <li>Pilot ${pilot.value} is ready for launch</li>
@@ -61,10 +62,9 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         <li>Cargo light enough for take off</li>
         </ol>
         `;
-        list.style.visibility = `visible`;
         document.getElementById('launchStatus').innerHTML = `Shuttle not ready for launch`;
-        document.getElementById('launchStatus').style.color = `red`;
-        fuelReady = false;
+        document.getElementById('launchStatus').style.color = `rgb(199, 37, 78)`;
+
     } else {   
         fuelReady = true;
     } 
@@ -79,7 +79,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         `;
         list.style.visibility = `visible`;
         document.getElementById('launchStatus').innerHTML = `Shuttle not ready for launch`;
-        document.getElementById('launchStatus').style.color = `red`;
+        document.getElementById('launchStatus').style.color = `rgb(199, 37, 78)`;
         cargoReady = false;
     } else {    
         cargoReady = true;
