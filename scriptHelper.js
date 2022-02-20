@@ -35,15 +35,15 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         cargoReady = false;
         fuelReady = false;
     
-    if (validateInput(pilot.value) === `Empty` || validateInput(copilot.value) === `Empty` || validateInput(fuelLevel.value) === `Empty` || validateInput(cargoLevel.value) === `Empty`) {
+    if (validateInput(pilot) === `Empty` || validateInput(copilot) === `Empty` || validateInput(fuelLevel.value) === `Empty` || validateInput(cargoLevel.value) === `Empty`) {
         showAlert(`All fields are required`);
         fieldCheck = false;
 
-    } else if (validateInput(fuelLevel.value) === 'Not a Number' || validateInput(cargoLevel.value) === 'Not a Number'){
+    } else if (validateInput(fuelLevel) === 'Not a Number' || validateInput(cargoLevel) === 'Not a Number'){
         showAlert(`Invalid Entry: requires a name in the Pilot and Co-pilot Name fields and a numerical value in Fuel Level and Cargo Mass fields`);
         fieldCheck = false;
         
-    } else if (validateInput(pilot.value) === 'Is a Number' || validateInput(copilot.value) === 'Is a Number') {
+    } else if (validateInput(pilot) === 'Is a Number' || validateInput(copilot) === 'Is a Number') {
         showAlert(`Invalid Entry: requires a name in the Pilot and Co-pilot Name fields and a numerical value in Fuel Level and Cargo Mass fields`);
         fieldCheck = false;
         
@@ -52,13 +52,13 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
     }
     
-    if (Number(fuelLevel.value) < 10000 && fieldCheck) {
+    if (Number(fuelLevel) < 10000 && fieldCheck) {
         list.style.visibility = `visible`;
         list.innerHTML = `
         <ol>
-        <li>Pilot ${pilot.value} is ready for launch</li>
-        <li>Co-pilot ${copilot.value} is ready for launch</li>
-        <li>Not enough fuel for journey! We have ${fuelLevel.value}L loaded and at least 10,000L are needed!</li>
+        <li>Pilot ${pilot} is ready for launch</li>
+        <li>Co-pilot ${copilot} is ready for launch</li>
+        <li>Not enough fuel for journey! We have ${fuelLevel}L loaded and at least 10,000L are needed!</li>
         <li>Cargo light enough for take off</li>
         </ol>
         `;
@@ -68,14 +68,14 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     } else {   
         fuelReady = true;
     } 
-    if (Number(cargoLevel.value || fuelLevel.value) > 10000 && fieldCheck) {
+    if (Number(cargoLevel || fuelLevel) > 10000 && fieldCheck) {
         list.style.visibility = `visible`;
         list.innerHTML = `
         <ol>
-        <li>Pilot ${pilot.value} is ready for launch</li>
-        <li>Co-pilot ${copilot.value} is ready for launch</li>
+        <li>Pilot ${pilot} is ready for launch</li>
+        <li>Co-pilot ${copilot} is ready for launch</li>
         <li>Enough fuel for journey</li>
-        <li>Cargo too heavy for takeoff! Max load is 10,000kg and we have ${cargoLevel.value}kg!</li>
+        <li>Cargo too heavy for takeoff! Max load is 10,000kg and we have ${cargoLevel}kg!</li>
         </ol>
         `;
         document.getElementById('launchStatus').innerHTML = `Shuttle not ready for launch`;
@@ -88,13 +88,13 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         list.style.visibility = `hidden`;
         document.getElementById('launchStatus').innerHTML = `Shuttle ready for launch`;
         document.getElementById('launchStatus').style.color = 'rgb(65, 159, 106)';
-        /*list.innerHTML = `
+        list.innerHTML = `
         <ol>
-        <li>Pilot ${pilot.value} is ready for launch</li>
-        <li>Co-pilot ${copilot.value} is ready for launch</li>
+        <li>Pilot ${pilot} is ready for launch</li>
+        <li>Co-pilot ${copilot} is ready for launch</li>
         <li>Enough fuel for journey</li>
         <li>Cargo light enough for take off</li>
-        `;*/
+        `;
     }
    
 }
