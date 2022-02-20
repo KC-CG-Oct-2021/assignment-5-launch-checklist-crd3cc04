@@ -38,15 +38,15 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     if (validateInput(pilot.value) === `Empty` || validateInput(copilot.value) === `Empty` || validateInput(fuelLevel.value) === `Empty` || validateInput(cargoLevel.value) === `Empty`) {
         alert(`All fields are required`);
         fieldCheck = false;
-        list.style.visibility = 'hidden';
+        list.style.visibility = 'visible';
     } else if (validateInput(fuelLevel.value) === 'Not a Number' || validateInput(cargoLevel.value) === 'Not a Number'){
         alert(`Invalid Entry: requires a name in the Pilot and Co-pilot Name fields and a numerical value in Fuel Level and Cargo Mass fields`);
         fieldCheck = false;
-        list.style.visibility = 'hidden';
+        list.style.visibility = 'visible';
     } else if (validateInput(pilot.value) === 'Is a Number' || validateInput(copilot.value) === 'Is a Number') {
         alert(`Invalid Entry: requires a name in the Pilot and Co-pilot Name fields and a numerical value in Fuel Level and Cargo Mass fields`);
         fieldCheck = false;
-        list.style.visibility = `hidden`;
+        list.style.visibility = `visible`;
     } else {
         fieldCheck = true;
 
