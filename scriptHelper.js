@@ -38,15 +38,15 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     if (validateInput(pilot.value) === `Empty` || validateInput(copilot.value) === `Empty` || validateInput(fuelLevel.value) === `Empty` || validateInput(cargoLevel.value) === `Empty`) {
         alert(`All fields are required`);
         fieldCheck = false;
-        list.style.visiability = 'hidden';
+        list.style.visibility = 'hidden';
     } else if (validateInput(fuelLevel.value) === 'Not a Number' || validateInput(cargoLevel.value) === 'Not a Number'){
         alert(`Invalid Entry: requires a name in the Pilot and Co-pilot Name fields and a numerical value in Fuel Level and Cargo Mass fields`);
         fieldCheck = false;
-        list.style.visiability = 'hidden';
+        list.style.visibility = 'hidden';
     } else if (validateInput(pilot.value) === 'Is a Number' || validateInput(copilot.value) === 'Is a Number') {
         alert(`Invalid Entry: requires a name in the Pilot and Co-pilot Name fields and a numerical value in Fuel Level and Cargo Mass fields`);
         fieldCheck = false;
-        list.style.visiability = `hidden`;
+        list.style.visibility = `hidden`;
     } else {
         fieldCheck = true;
 
@@ -61,7 +61,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         <li>Cargo light enough for take off</li>
         </ol>
         `;
-        list.style.visiability = `visible`;
+        list.style.visibility = `visible`;
         document.getElementById('launchStatus').innerHTML = `Shuttle not ready for launch`;
         document.getElementById('launchStatus').style.color = `red`;
         fuelReady = false;
@@ -77,7 +77,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         <li>Cargo too heavy for takeoff! Max load is 10,000kg and we have ${cargoLevel.value}kg!</li>
         </ol>
         `;
-        list.style.visiability = `visible`;
+        list.style.visibility = `visible`;
         document.getElementById('launchStatus').innerHTML = `Shuttle not ready for launch`;
         document.getElementById('launchStatus').style.color = `red`;
         cargoReady = false;
