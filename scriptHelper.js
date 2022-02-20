@@ -60,7 +60,6 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         <li>Not enough fuel for journey! We have ${fuelLevel.value}L loaded and at least 10,000L are needed!</li>
         <li>Cargo light enough for take off</li>
         </ol>
-        
         `;
         list.style.visiability = `visible`;
         document.getElementById('launchStatus').innerHTML = `Shuttle not ready for launch`;
@@ -86,7 +85,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         cargoReady = true;
     }
     if (fuelReady && cargoReady && fieldCheck) {
-        //list.style.visiability = `visible`;
+        list.style.visibility = `hidden`;
         document.getElementById('launchStatus').innerHTML = `Shuttle ready for launch`;
         document.getElementById('launchStatus').style.color = `green`;
         list.innerHTML = `

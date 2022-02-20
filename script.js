@@ -7,13 +7,15 @@
 
 //const { pickPlanet, addDestinationInfo } = require("./scriptHelper");
 
+
+
 window.addEventListener("load", function() {
- 
+    list = document.getElementById('faultyItems');
+    list.style.visibility = 'hidden';
     let form = document.querySelector("form");
     form.addEventListener('submit', (event)=> {
     event.preventDefault();
-    list = document.getElementById('faultyItems');
-    
+    //list = document.getElementById('faultyItems');
     pilot = document.querySelector('input[name=pilotName]');
     copilot = document.querySelector('input[name=copilotName]');
     fuelLevel = document.querySelector('input[name=fuelLevel]');
