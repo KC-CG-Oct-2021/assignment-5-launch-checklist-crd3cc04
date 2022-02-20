@@ -20,9 +20,9 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 }
 
 function validateInput(testInput) {
-    if (testInput === '' || testInput === '' || testInput === '') {
+    if (testInput === '' || testInput === null || testInput === 0) {
         return `Empty`
-    } else if ((!isNaN(Number(testInput)))){
+    }else if ((!isNaN(Number(testInput)))){
         return `Is a Number`
     } else {
         return 'Not a Number'
@@ -30,51 +30,72 @@ function validateInput(testInput) {
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-
-    let pilotStatus = document.getElementById('pilotStatus');
-    let copilotStatus = document.getElementById('copilotStatus');
-    let fuelStatus = document.getElementById('fuelStatus');
-    let launchStatus = document.getElementById('launchStatus');
-    let cargoStatus = document.getElementById('cargoStatus');
-
+      
+        fieldCheck = false;
+        cargoReady = false;
+        fuelReady = false;
     
-    if (validateInput(pilot) === `Empty` || validateInput(copilot) === `Empty` || validateInput(fuelLevel) === `Empty` || validateInput(cargoLevel) === `Empty`) {
+    if (validateInput(pilot.value) === `Empty` || validateInput(copilot.value) === `Empty` || validateInput(fuelLevel.value) === `Empty` || validateInput(cargoLevel.value) === `Empty`) {
         alert(`All fields are required`);
-        //fieldCheck = false;
+        fieldCheck = false;
         list.style.visiability = 'hidden';
-    } else if (validateInput(fuelLevel) === 'Not a Number' || validateInput(cargoLevel) === 'Not a Number'){
-        alert(`Requires a name not numbers`);
-        //fieldCheck = false;
+    } else if (validateInput(fuelLevel.value) === 'Not a Number' || validateInput(cargoLevel.value) === 'Not a Number'){
+        alert(`Invalid Entry: requires a name in the Pilot and Co-pilot Name fields and a numerical value in Fuel Level and Cargo Mass fields`);
+        fieldCheck = false;
         list.style.visiability = 'hidden';
-    } else if (validateInput(pilot) === 'Is a Number' || validateInput(copilot) === 'Is a Number') {
-        alert(`Requires numerical values`);
-        //fieldCheck = false;
+    } else if (validateInput(pilot.value) === 'Is a Number' || validateInput(copilot.value) === 'Is a Number') {
+        alert(`Invalid Entry: requires a name in the Pilot and Co-pilot Name fields and a numerical value in Fuel Level and Cargo Mass fields`);
+        fieldCheck = false;
         list.style.visiability = `hidden`;
+    } else {
+        fieldCheck = true;
+
     }
-     /* else {
-        pilotStatus.innerHTML = `Pilot ${pilot} is ready`;
-        copilotStatus.innerHTML = `Co-pilot ${copilot} is ready`;
-        list.style.visiability = `hidden`;
-      }*/
-
-    if (Number(fuelLevel) < 10000) {
-        list.style.visiability = `visible`;
-        fuelStatus.innerHTML = `Not enough fuel for journey! We have ${fuelStatus}L loaded and at least 10,000L are needed!`;
-        launchStatus.innerHTML = `Shuttle not ready for launch`;
-        launchStatus.style.color = `red`;
+    
+    if (Number(fuelLevel.value) < 10000 && fieldCheck) {
+        list.innerHTML = `
+        <ol>
+        <li>Pilot ${pilot.value} is ready for launch</li>
+        <li>Co-pilot ${copilot.value} is ready for launch</li>
+        <li>Not enough fuel for journey! We have ${fuelLevel.value}L loaded and at least 10,000L are needed!</li>
+        <li>Cargo light enough for take off</li>
+        </ol>
         
-    } else if (Number(cargoLevel) > 10000) {
+        `;
         list.style.visiability = `visible`;
-        cargoStatus.innerHTML = `Cargo too heavy for takeoff! Max load is 10,000kg and we have ${cargoStatus.value}kg!`;
-        launchStatus.innerHTML = `Shuttle not ready for launch`;
-        launchStatus.style.color = `red`;
-
-    } else if (Number(cargoLevel) < 10000 && Number(fuelLevel) > 10000) {
+        document.getElementById('launchStatus').innerHTML = `Shuttle not ready for launch`;
+        document.getElementById('launchStatus').style.color = `red`;
+        fuelReady = false;
+    } else {   
+        fuelReady = true;
+    } 
+    if (Number(cargoLevel.value || fuelLevel.value) > 10000 && fieldCheck) {
+        list.innerHTML = `
+        <ol>
+        <li>Pilot ${pilot.value} is ready for launch</li>
+        <li>Co-pilot ${copilot.value} is ready for launch</li>
+        <li>Enough fuel for journey</li>
+        <li>Cargo too heavy for takeoff! Max load is 10,000kg and we have ${cargoLevel.value}kg!</li>
+        </ol>
+        `;
         list.style.visiability = `visible`;
-        fuelStatus.innerHTML = `Enough fuel for journey`;
-        cargoStatus.innerHTML = `Cargo light enough for takeoff`;
-        launchStatus.innerHTML = `Shuttle ready for launch`;
-        launchStatus.style.color = `green`;
+        document.getElementById('launchStatus').innerHTML = `Shuttle not ready for launch`;
+        document.getElementById('launchStatus').style.color = `red`;
+        cargoReady = false;
+    } else {    
+        cargoReady = true;
+    }
+    if (fuelReady && cargoReady && fieldCheck) {
+        //list.style.visiability = `visible`;
+        document.getElementById('launchStatus').innerHTML = `Shuttle ready for launch`;
+        document.getElementById('launchStatus').style.color = `green`;
+        list.innerHTML = `
+        <ol>
+        <li>Pilot ${pilot.value} is ready for launch</li>
+        <li>Co-pilot ${copilot.value} is ready for launch</li>
+        <li>Enough fuel for journey</li>
+        <li>Cargo light enough for take off</li>
+        `;
     }
    
 }

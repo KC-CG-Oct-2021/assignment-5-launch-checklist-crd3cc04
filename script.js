@@ -1,6 +1,8 @@
 // Write your JavaScript code here!
 //const { formSubmission } = require("./scriptHelper");
 
+//const { formSubmission } = require("./scriptHelper");
+
 //const { myFetch } = require("./scriptHelper");
 
 //const { pickPlanet, addDestinationInfo } = require("./scriptHelper");
@@ -10,17 +12,14 @@ window.addEventListener("load", function() {
     let form = document.querySelector("form");
     form.addEventListener('submit', (event)=> {
     event.preventDefault();
-    let pilot = document.querySelector('input[name=pilotName]').value;
-    let copilot = document.querySelector('input[name=copilotName]').value;
-    let fuelLevel = document.querySelector('input[name=fuelLevel]').value;
-    let cargoLevel = document.querySelector('input[name=cargoMass]').value;
-    let list = document.getElementById('faultyItems');
-
-    document.getElementById('pilotStatus').innerHTML = `Pilot ${pilot} is ready`;
-    document.getElementById('copilotStatus').innerHTML= `Co-pilot ${copilot} is ready`;
-    //list.style.visiability = `hidden`;
+    list = document.getElementById('faultyItems');
     
-     formSubmission(document,list,pilot,copilot,fuelLevel,cargoLevel);
+    pilot = document.querySelector('input[name=pilotName]');
+    copilot = document.querySelector('input[name=copilotName]');
+    fuelLevel = document.querySelector('input[name=fuelLevel]');
+    cargoLevel = document.querySelector('input[name=cargoMass]');
+    formSubmission(document,list,pilot,copilot,fuelLevel,cargoLevel);
+    
 
     })
 
@@ -39,7 +38,7 @@ window.addEventListener("load", function() {
        let star = planet.star;
        let distance = planet.distance;
        let imageUrl = planet.image;
-       moons = planet.moons;
+       let moons = planet.moons;
        addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl);
    })
    
