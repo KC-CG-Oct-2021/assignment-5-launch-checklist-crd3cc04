@@ -82,7 +82,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         cargoReady = false;
 
     }
-   /* else if (Number(cargoLevel) < 10000 && Number(fuelLevel) > 10000) {
+    else if (Number(cargoLevel) > 10000 && Number(fuelLevel) > 10000) {
         let pilotStatus = document.getElementById('pilotStatus');
         let copilotStatus = document.getElementById('copilotStatus');
         let fuelStatus = document.getElementById('fuelStatus');
@@ -96,13 +96,8 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
         document.getElementById('launchStatus').innerHTML = `Shuttle Not Ready for Launch`;
         document.getElementById('launchStatus').style.color = `rgb(199, 37, 78)`;
-        fuelReady = false;
-        cargoReady = false;
-        
-    } else {    
-        fuelReady = true;
-        cargoReady = true;  
-    }*/
+          
+    }
 
     else if (Number(cargoLevel) < 10000 && Number(fuelLevel) > 10000) {
         let pilotStatus = document.getElementById('pilotStatus');
