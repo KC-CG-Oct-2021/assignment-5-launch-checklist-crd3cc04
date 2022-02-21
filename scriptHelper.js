@@ -52,14 +52,16 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
     }
 
-    
-    if (Number(fuelLevel) < 10000 && fieldCheck) {
+
+
 
 
         let pilotStatus = document.getElementById('pilotStatus');
         let copilotStatus = document.getElementById('copilotStatus');
         let fuelStatus = document.getElementById('fuelStatus');
         let cargoStatus = document.getElementById('cargoStatus');
+    
+    if (Number(fuelLevel) < 10000 && fieldCheck) {
         list.style.visibility = `visible`;
         
         pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
@@ -88,7 +90,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         cargoReady = true;
 
     }
-    if (Number(fuelLevel) > 10000 (Number(cargoLevel) > 10000 && fieldCheck)) {
+    if (Number(fuelLevel) > 10000 || Number(cargoLevel) > 10000 && fieldCheck) {
         list.style.visibility = `visible`;
         pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
         copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`;
