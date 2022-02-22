@@ -44,15 +44,15 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     if (validateInput(pilot) === `Empty` || validateInput(copilot) === `Empty` || validateInput(fuelLevel.value) === `Empty` || validateInput(cargoLevel.value) === `Empty`) {
         showAlert(`All fields are required`);
         fieldCheck = false;
-        list.style.visibility = 'hidden'
+        //list.style.visibility = 'hidden'
     } else if (validateInput(fuelLevel) === 'Not a Number' || validateInput(cargoLevel) === 'Not a Number'){
         showAlert(`Invalid Entry: requires a name in the Pilot and Co-pilot Name fields and a numerical value in Fuel Level and Cargo Mass fields`);
         fieldCheck = false;
-        list.style.visibility = 'hidden'
+        //list.style.visibility = 'hidden'
     } else if (validateInput(pilot) === 'Is a Number' || validateInput(copilot) === 'Is a Number') {
         showAlert(`Invalid Entry: requires a name in the Pilot and Co-pilot Name fields and a numerical value in Fuel Level and Cargo Mass fields`);
         fieldCheck = false;
-        list.style.visibility = 'hidden'
+        //list.style.visibility = 'hidden'
     } else {
         fieldCheck = true;
 
@@ -70,12 +70,6 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         fuelReady = false;
     }
     else if (Number(fuelLevel) > 10000 && Number(cargoLevel) > 10000) {
-        /*let pilotStatus = document.getElementById('pilotStatus');
-        let copilotStatus = document.getElementById('copilotStatus');
-        let fuelStatus = document.getElementById('fuelStatus');
-        let cargoStatus = document.getElementById('cargoStatus');
-        let launchStatus = document.getElementById('launchStatus');*/
-
         list.style.visibility = `visible`;
         launchStatus.style.color = `rgb(199, 37, 78)`;
         launchStatus.innerHTML = `Shuttle Not Ready for Launch`;
@@ -98,10 +92,6 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
     }
     else  {
-        /*let pilotStatus = document.getElementById('pilotStatus');
-        let copilotStatus = document.getElementById('copilotStatus');
-        let fuelStatus = document.getElementById('fuelStatus');
-        let cargoStatus = document.getElementById('cargoStatus');*/
 
         list.style.visibility = `hidden`;
         launchStatus.style.color = 'rgb(65, 159, 106)';
